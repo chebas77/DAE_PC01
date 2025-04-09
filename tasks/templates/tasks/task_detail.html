@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Formulario de Tarea{% endblock %}</title>
+    <title>{% block title %}Detalles de Tarea{% endblock %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +17,7 @@
             margin-top: 20px;
         }
 
-        form {
+        .task-details {
             width: 80%;
             margin: 20px auto;
             background-color: #fff;
@@ -26,12 +26,9 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        form input {
-            width: 100%;
-            padding: 10px;
+        .task-details p {
+            font-size: 18px;
             margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
         }
 
         .btn {
@@ -43,8 +40,8 @@
             cursor: pointer;
             font-size: 16px;
             text-align: center;
-            display: block;
-            margin: 20px auto;
+            display: inline-block;
+            margin: 20px 0;
         }
 
         .btn:hover {
@@ -61,12 +58,14 @@
     </style>
 </head>
 <body>
-    <h1>Formulario de Tarea</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn">Guardar</button>
-    </form>
+    <h1>Detalles de la Tarea</h1>
+    <div class="task-details">
+        <p><strong>ID:</strong> {{ task.id }}</p>
+        <p><strong>Descripción:</strong> {{ task.description }}</p>
+        <p><strong>Fecha de Creación:</strong> {{ task.created_at }}</p>
+        <a href="{% url 'tasks:edit' task.id %}" class="btn">Editar</a>
+        <a href="{% url 'tasks:delete' task.id %}" class="btn">Eliminar</a>
+    </div>
     <a href="{% url 'tasks:home' %}" class="btn btn-back">Regresar</a>
 </body>
 </html>
