@@ -2,104 +2,75 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Lista de Tareas{% endblock %}</title>
+    <title>Listado de Tareas</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
+        /* Estilo básico para la tabla de tareas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
         }
 
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-
-        table th, table td {
-            padding: 12px;
-            text-align: left;
+        th, td {
+            padding: 10px;
             border: 1px solid #ddd;
+            text-align: left;
         }
 
-        table th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        table tr:nth-child(even) {
+        th {
             background-color: #f2f2f2;
         }
 
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .btn {
+        /* Botón para ir al dashboard */
+        .go-to-dashboard {
+            margin-top: 20px;
+            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            text-align: center;
-            display: block;
-            margin: 20px auto;
         }
 
-        .btn:hover {
+        .go-to-dashboard:hover {
             background-color: #45a049;
-        }
-
-        .btn-back {
-            background-color: #555;
-        }
-
-        .btn-back:hover {
-            background-color: #444;
         }
     </style>
 </head>
 <body>
-    <h1>Lista de Tareas</h1>
+
+    <h1>Listado de Tareas</h1>
+
+    <!-- Tabla de tareas -->
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Título</th>
                 <th>Descripción</th>
-                <th>Acciones</th>
+                <th>Estado</th>
+                <th>Prioridad</th>
+                <th>Fecha de Vencimiento</th>
             </tr>
         </thead>
         <tbody>
+            <!-- Aquí se llenará con las tareas -->
             {% for task in tasks %}
-                <tr>
-                    <td>{{ task.id }}</td>
-                    <td>{{ task.description }}</td>
-                    <td>
-                        <a href="{% url 'tasks:edit' task.id %}">Editar</a>
-                        <a href="{% url 'tasks:delete' task.id %}">Eliminar</a>
-                        
-                    </td>
-                    
-                </tr>
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.due_date }}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'tasks:create' %}" class="btn">Crear Nueva Tarea</a>
-    <a href="{% url 'tasks:list' %}" class="btn btn-back">Regresar</a>
+
+    <!-- Botón para redirigir al dashboard -->
+    <a href="/dashboard">
+        <button class="go-to-dashboard">Ir al Dashboard de Productividad</button>
+    </a>
+
 </body>
 </html>

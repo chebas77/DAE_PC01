@@ -59,19 +59,17 @@ class TaskDeleteView(DeleteView):
         return reverse_lazy('tasks:list')
     
 def dashboard(request):
-    # Contar tareas por estado
+    # Contar las tareas por estado
     task_status_counts = Task.objects.values('status').annotate(count=Count('status'))
-
-    # Contar tareas por prioridad
+    
+    # Contar las tareas por prioridad
     task_priority_counts = Task.objects.values('priority').annotate(count=Count('priority'))
 
-    # Obtener todas las tareas con su fecha de vencimiento (para el calendario)
-    task_due_dates = Task.objects.all()
+    # Obtener las tareas con fecha de vencimiento
+    task_due_dates = Task.objects.filter(due_date__isnull=False)
 
-    context = {
+    return render(request, 'tasks/dashboard.html', {
         'task_status_counts': task_status_counts,
         'task_priority_counts': task_priority_counts,
         'task_due_dates': task_due_dates,
-    }
-
-    return render(request, 'tasks/dashboard.html', context)
+    })
