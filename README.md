@@ -18,58 +18,40 @@ Asegúrate de tener instalado lo siguiente antes de comenzar:
 
 Primero, clona este repositorio en tu máquina local:
 
-```bash
+
 git clone https://github.com/tu_usuario/dashboard-productividad.git
 2. Crea un entorno virtual (opcional pero recomendado)
 Si deseas aislar las dependencias de este proyecto, crea un entorno virtual en Python:
 
-bash
-Copiar
-Editar
 cd dashboard-productividad
 python -m venv venv
 3. Activa el entorno virtual
 En Windows:
 
 bash
-Copiar
-Editar
 venv\Scripts\activate
 En macOS/Linux:
-
-bash
-Copiar
-Editar
 source venv/bin/activate
+
 4. Instala las dependencias
 Una vez activado el entorno virtual, instala las dependencias del proyecto:
 
-bash
-Copiar
-Editar
+
 pip install -r requirements.txt
 5. Configura la base de datos
 Si es la primera vez que estás configurando el proyecto, ejecuta las migraciones para crear la base de datos:
 
-bash
-Copiar
-Editar
 python manage.py migrate
 6. Crea un superusuario (opcional)
 Si deseas acceder al panel de administración de Django, crea un superusuario:
 
-bash
-Copiar
-Editar
 python manage.py createsuperuser
 Sigue las instrucciones para establecer un nombre de usuario, correo electrónico y contraseña.
 
 7. Ejecuta el servidor de desarrollo
 Para iniciar el servidor de desarrollo de Django, ejecuta el siguiente comando:
 
-bash
-Copiar
-Editar
+
 python manage.py runserver
 El servidor se ejecutará en http://127.0.0.1:8000/ y podrás acceder al sitio web desde tu navegador.
 
@@ -79,9 +61,7 @@ El dashboard se encuentra en http://127.0.0.1:8000/dashboard/, donde se muestra 
 El listado de tareas está disponible en http://127.0.0.1:8000/tasks/task-list/, donde podrás ver todas las tareas registradas.
 
 Estructura del Proyecto
-graphql
-Copiar
-Editar
+
 dashboard-productividad/
 ├── manage.py               # Script para ejecutar el servidor y gestionar el proyecto Django
 ├── requirements.txt        # Lista de dependencias del proyecto
